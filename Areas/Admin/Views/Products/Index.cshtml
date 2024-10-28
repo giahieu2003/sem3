@@ -1,0 +1,129 @@
+﻿@model IEnumerable<Sem3.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="page-header">
+            <h3 class="page-title"> Product </h3>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Product</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Home</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Product home</h4>
+
+                        <p>
+                            <a asp-action="Create"><button type="submit" class="btn btn-danger btn-lg">Create Product</button></a>
+                            @* <a asp-action="Create">Create Catgory</a> *@
+                        </p>
+                        <hr />
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.ProductId)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.ProductName)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Description)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Price)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Image)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Category)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ProductId)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ProductName)
+                                            </td>
+                                            <td style="white-space: normal;">
+                                                @Html.DisplayFor(modelItem => item.Description)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Price)
+                                            </td>
+                                            <td>
+                                                <img src="@item.Image" alt="Alternate Text" style="width: 155px;height: 200px;border-radius: 0;">
+                                                @* @Html.DisplayFor(modelItem => item.Image) *@
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                                            </td>
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.ProductId">
+                                                    <button type="button" class="btn btn-outline-secondary btn-icon-text">
+                                                        Edit <i class="mdi mdi-file-check btn-icon-append"></i>
+                                                    </button>
+                                                </a> |
+                                                @* <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> | *@
+                                                <a asp-action="Delete" asp-route-id="@item.ProductId">
+                                                    <button type="button" class="btn btn-outline-danger btn-icon-text">
+                                                        Delete
+                                                    </button>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <div class="template-demo">
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    @if (ViewBag.CurrentPage > 1)
+                                    {
+                                        <a href="@Url.Action("Index", new { page = ViewBag.CurrentPage - 1 })"><button type="button" class="btn btn-outline-secondary">Previous</button></a>
+                                    }
+                                    @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                                    {
+                                        <a href="@Url.Action("Index", new { page = i })" @(ViewBag.CurrentPage == i ? "class=active" : "")><button type="button" class="btn btn-outline-secondary">@i</button></a>                        
+                                    }
+                                    @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+                                    {
+                                        <a href="@Url.Action("Index", new { page = ViewBag.CurrentPage + 1 })"><button type="button" class="btn btn-outline-secondary">Next</button></a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content-wrapper ends -->
+    <!-- partial:../../partials/_footer.html -->
+    <footer class="footer">
+        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin templates</a> from Bootstrapdash.com</span>
+        </div>
+    </footer>
+    <!-- partial -->
+</div>
+
+

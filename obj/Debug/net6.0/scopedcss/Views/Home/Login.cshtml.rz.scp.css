@@ -1,0 +1,102 @@
+/* General Styles */
+body[b-pcatf58blw] {
+    font-family: Arial, sans-serif;
+    background: #f8f9fa;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container and Alignment */
+.login[b-pcatf58blw] {
+    padding: 3rem 0;
+}
+
+.login__form[b-pcatf58blw] {
+    background: #fff;
+    padding: 2rem;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+    .login__form h3[b-pcatf58blw] {
+        font-size: 24px;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 1.5rem;
+    }
+
+.input__item[b-pcatf58blw] {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+    .input__item input[b-pcatf58blw] {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+        transition: border-color 0.3s ease;
+    }
+
+        .input__item input:focus[b-pcatf58blw] {
+            border-color: #007bff;
+            outline: none;
+        }
+
+/* Button Styling */
+.site-btn[b-pcatf58blw] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+    .site-btn:hover[b-pcatf58blw] {
+        background-color: #0056b3;
+    }
+
+/* Register Link */
+.login__register[b-pcatf58blw] {
+    margin-top: 1.5rem;
+}
+
+    .login__register h3[b-pcatf58blw] {
+        font-size: 16px;
+        font-weight: 400;
+        color: #666;
+    }
+
+    .login__register .primary-btn[b-pcatf58blw] {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: 700;
+    }
+
+        .login__register .primary-btn:hover[b-pcatf58blw] {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+/* Responsive Adjustments */
+@media (max-width: 576px) {
+    .login__form[b-pcatf58blw] {
+        padding: 1.5rem;
+    }
+
+    .site-btn[b-pcatf58blw] {
+        font-size: 14px;
+        padding: 0.5rem 1rem;
+    }
+}
