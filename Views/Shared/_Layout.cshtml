@@ -218,6 +218,26 @@
     <script src="/home/js/mixitup.min.js"></script>
     <script src="/home/js/owl.carousel.min.js"></script>
     <script src="/home/js/main.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Activate Bootstrap tabs
+            $('a[data-bs-toggle="tab"]').on('click', function (e) {
+                e.preventDefault();
+                $(this).tab('show');
+            });
+
+            // Set active tab based on URL hash
+            var hash = window.location.hash;
+            if (hash) {
+                $('.myaccount-tab-menu a[href="' + hash + '"]').tab('show');
+            }
+
+            // Update URL hash when tab changes
+            $('.myaccount-tab-menu a').on('shown.bs.tab', function (e) {
+                window.location.hash = e.target.hash;
+            });
+        });
+    </script>
 </body>
 
 </html>
