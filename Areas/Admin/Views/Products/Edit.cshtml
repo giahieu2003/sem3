@@ -1,0 +1,127 @@
+﻿@model Sem3.Models.Product
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<!-- partial -->
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="page-header">
+            <h3 class="page-title"> Product </h3>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Product</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Create</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Create Product</h4>
+                        <hr />
+                        <form asp-action="Edit" class="forms-sample" enctype="multipart/form-data">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="ProductId" />
+                            <div class="form-group">
+                                <label asp-for="ProductId" for="exampleInputName1">ProductName</label>
+                                <input asp-for="ProductId" type="text" class="form-control" id="exampleInputName1" placeholder="ProductId">
+                                <span asp-validation-for="ProductId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ProductName" for="exampleInputName1">ProductName</label>
+                                <input asp-for="ProductName" type="text" class="form-control" id="exampleInputName1" placeholder="ProductName">
+                                <span asp-validation-for="ProductName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Description" for="exampleInputEmail3">Description</label>
+                                <input asp-for="Description" type="text" class="form-control" id="exampleInputEmail3" placeholder="Description">
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Price" for="exampleInputEmail3">Price</label>
+                                <input asp-for="Price" type="text" class="form-control" id="exampleInputEmail3" placeholder="Price">
+                                <span asp-validation-for="Price" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="CategoryId" for="exampleSelectGender">CategoryId</label>
+                                <select asp-for="CategoryId" class="form-control" id="exampleSelectGender" asp-items="ViewBag.CategoryId">
+                                    @* <option>Male</option>
+                                    <option>Female</option> *@
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Image" for="exampleInputEmail3">Price</label>
+                                <input asp-for="Image" type="file" class="form-control" id="exampleInputEmail3" placeholder="Image">
+                                <span asp-validation-for="Image" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label>Ảnh hiện tại:</label>
+                                <img src="@Model.Image" alt="Product Image" width="200" />
+                            </div>
+                            <button type="submit" value="Create" class="btn btn-primary mr-2">Submit</button>
+                            <button class="btn btn-dark">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content-wrapper ends -->
+    <!-- partial:../../partials/_footer.html -->
+    <footer class="footer">
+        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin templates</a> from Bootstrapdash.com</span>
+        </div>
+    </footer>
+    <!-- partial -->
+</div>
+
+@* <h1>Edit</h1>
+
+<h4>Product</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ProductId" />
+            <div class="form-group">
+                <label asp-for="ProductName" class="control-label"></label>
+                <input asp-for="ProductName" class="form-control" />
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input asp-for="Image" class="form-control" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoryId" class="control-label"></label>
+                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+ *@

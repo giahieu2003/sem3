@@ -1,0 +1,162 @@
+﻿@model List<Sem3.Models.OrderDetail>
+
+@{
+    ViewData["Title"] = "Create Order";
+    decimal totalAmount = 0; // Tổng tiền
+}
+
+@* <section class="order-details spad">
+    <div class="container">
+        <div class="row">
+            <!-- Thông tin khách hàng -->
+            <div class="col-lg-6">
+                <div class="order__info">
+                    <h4>Customer Information</h4>
+                    <p><strong>Name:</strong> @ViewData["CustomerName"]</p>
+                    <p><strong>Address:</strong> @ViewData["CustomerAddress"]</p>
+                    <p><strong>Email:</strong> @ViewData["CustomerEmail"]</p>
+                </div>
+            </div>
+
+            <!-- Bảng sản phẩm -->
+            <div class="col-lg-6">
+                <div class="order__details">
+                    <h4>Order Summary</h4>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var detail in Model)
+                            {
+                                var itemTotal = detail.Quantity * detail.UnitPrice;
+                                totalAmount += itemTotal;
+
+                                <tr>
+                                    <td>@detail.Product?.ProductName</td>
+                                    <td>@detail.Quantity</td>
+                                    <td>@detail.UnitPrice.ToString("N0") ₫</td>
+                                    <td>@itemTotal.ToString("N0") ₫</td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="3">Total Amount:</th>
+                                <th>@totalAmount.ToString("N0") ₫</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Xác Nhận Đặt Hàng -->
+        <div class="row mt-4">
+            <div class="col-lg-12">
+                <form asp-action="ConfirmOrder" method="post">
+                    <div class="form-group">
+                        <label for="PaymentMethod">Payment Method:</label>
+                        <select id="PaymentMethod" name="PaymentMethod" class="form-control">
+                            <option value="Credit Card">Credit Card</option>
+                            <option value="Cheque">Cheque</option>
+                            <option value="VPP">VPP</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mt-3">Confirm Order</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section> *@
+
+
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__text">
+                    <h4>Check Out</h4>
+                    <div class="breadcrumb__links">
+                        <a href="./index.html">Home</a>
+                        <a href="./shop.html">Shop</a>
+                        <span>Check Out</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+<!-- Checkout Section Begin -->
+<section class="checkout spad">
+    <div class="container">
+        <div class="checkout__form">
+            @* <form action="#"> *@
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <h6 class="coupon__code">
+                            <span class="icon_tag_alt"></span> Have a coupon? <a href="#">
+                                Click
+                                here
+                            </a> to enter your code
+                        </h6>
+                        <h6 class="checkout__title">Billing Details</h6>
+                        <div class="checkout__input">
+                            <p>Name: <span>@ViewData["CustomerName"]</span></p>
+                        </div>
+                        <div class="checkout__input">
+                            <p>Address: <span>@ViewData["CustomerAddress"]</span></p>
+                        </div>
+                        <div class="checkout__input">
+                            <p>Email: <span>@ViewData["CustomerEmail"]</span></p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="checkout__order">
+                            <h4 class="order__title">Your order</h4>
+                            <div class="checkout__order__products">Product <span>Total</span></div>
+                            <ul class="checkout__total__products">
+                                @foreach (var detail in Model)
+                                {
+                                    var itemTotal = detail.Quantity * detail.UnitPrice;
+                                    totalAmount += itemTotal;
+                                    <li>@detail.Product?.ProductName <span>@itemTotal.ToString("N0") ₫</span></li>
+                                }
+                                @* <li>01. Vanilla salted caramel <span>$ 300.0</span></li>
+                                <li>02. German chocolate <span>$ 170.0</span></li>
+                                <li>03. Sweet autumn <span>$ 170.0</span></li>
+                                <li>04. Cluten free mini dozen <span>$ 110.0</span></li> *@
+                            </ul>
+                            <ul class="checkout__total__all">
+                                <li>Subtotal <span>@totalAmount.ToString("N0") ₫</span></li>
+                                <li>Total <span>@totalAmount.ToString("N0") ₫</span></li>
+                            </ul>
+                            <form asp-action="ConfirmOrder" method="post">
+                                <label for="PaymentMethod">Payment Method: </label>
+                                <div class="form-group">
+                                    <select id="PaymentMethod" name="PaymentMethod" class="form-control">
+                                        <option value="Credit Card">Credit Card</option>
+                                        <option value="Cheque">Cheque</option>
+                                        <option value="VPP">VPP</option>
+                                    </select>
+                                </div>
+
+                                @* <button type="submit" class="btn btn-primary mt-3">Confirm Order</button> *@
+                                <button type="submit" class="site-btn">PLACE ORDER</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            @* </form> *@
+        </div>
+    </div>
+</section>
+<!-- Checkout Section End -->

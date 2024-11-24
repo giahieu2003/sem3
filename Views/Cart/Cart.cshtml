@@ -1,0 +1,102 @@
+﻿@model List<Product>
+
+@{
+    ViewData["Title"] = "Cart";
+    decimal totalAmount = 0; // Khởi tạo biến tổng tiền
+}
+
+<section class="shopping-cart spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <form asp-action="UpdateCart" asp-controller="Cart" method="post">
+                    <div class="shopping__cart__table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var product in Model)
+                                {
+                                    var quantity = (int)ViewData[product.ProductId];
+                                    decimal price = (decimal)product.Price;
+                                    decimal itemTotal = price * quantity; // Tính tổng cho sản phẩm hiện tại
+                                    totalAmount += itemTotal; // Cộng vào tổng tiền
+
+                                    <tr>
+                                        <td class="product__cart__item">
+                                            <div class="product__cart__item__pic">
+                                                <img src="@Url.Content(product.Image)" width="100px" alt="">
+                                            </div>
+                                            <div class="product__cart__item__text">
+                                                <h6>@product.ProductName</h6>
+                                                <h5>@price.ToString("N0")</h5>
+                                            </div>
+                                        </td>
+                                        <td class="quantity__item">
+                                            <div class="quantity">
+                                                <div class="pro-qty-2">
+                                                    <input type="hidden" name="productId" value="@product.ProductId" />
+                                                    <input type="text" name="quantity[@product.ProductId]" value="@quantity" min="1">
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="cart__price">
+                                            @itemTotal.ToString("N0")₫
+                                        </td>
+                                        <td class="cart__close">
+                                            <form asp-action="RemoveFromCart" asp-controller="Cart" method="post" style="display:inline;">
+                                                <input type="hidden" name="productId" value="@product.ProductId" />
+                                                <button type="submit" style="border: none; background: none; cursor: pointer;">
+                                                    <i class="fa fa-close"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="continue__btn">
+                                <a href="#">Continue Shopping</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="continue__btn update__btn">
+                                <button type="submit" class="btn btn-primary" style="background: black;border-radius: 0;border-color: black;padding: 13px 42px;">
+                                    <i class="fa fa-spinner"></i> Update cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-4">
+                <div class="cart__discount">
+                    <h6>Discount codes</h6>
+                    <form action="#">
+                        <input type="text" placeholder="Coupon code">
+                        <button type="submit">Apply</button>
+                    </form>
+                </div>
+                <div class="cart__total">
+                    <h6>Cart total</h6>
+                    <ul>
+                        <li>Subtotal <span>@totalAmount.ToString("N0")₫</span></li>
+                        <li>Total <span>@totalAmount.ToString("N0")₫</span></li>
+                    </ul>
+                    @* <a href="#" class="primary-btn">Proceed to checkout</a> *@
+                    <a asp-action="CreateOrder" asp-controller="Order" class="primary-btn">Proceed to checkout</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

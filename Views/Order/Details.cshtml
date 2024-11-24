@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Sem3.Models.Order>  // Sử dụng IEnumerable để truyền danh sách đơn hàng
+@{
+    ViewData["Title"] = "Order";
+}
+
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__text">
+                    <h4>Orders</h4>
+                    <div class="breadcrumb__links">
+                        <a href="./index.html">Home</a>
+                        <span>Orders</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+<section class="order pad">
+@foreach (var order in Model)
+{
+    <div class="container">
+        <div class="card-body">
+            <div class="table-responsive">
+                    <h3>Order ID: @order.OrderId</h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Unit Price</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var detail in order.OrderDetails)
+                        {
+                             var Total = detail.Quantity * detail.UnitPrice;
+                             <tr>
+                                <td>@detail.Product?.ProductName</td>
+                                <td>@detail.Quantity</td>
+                                <td>@detail.UnitPrice.ToString("N0")</td>
+                                <td>@Total.ToString("N0")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <p><strong>Total Amount:</strong> @order.TotalAmount.ToString("N0")</p>
+                <hr />
+            </div>
+        </div>
+    </div>
+}
+</section>
+
+
